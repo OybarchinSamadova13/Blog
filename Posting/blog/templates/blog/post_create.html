@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block nav %}{% include 'blog/navigation.html' %}{% endblock %}
+
+{% block content %}
+
+
+
+    <div class="col-8 ">
+
+        <div class="row">
+            <div class="col mb-3">
+                <div class="card">
+                    <div class="card-footer">
+
+                         <div class="form-group d-flex justify-content-center mt-5">
+                                <h4 class="text-success" style="width: 30%;" type="submit">Create a Post</h4>
+                            </div>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <div class="form-group d-flex justify-content-center mt-5">
+                                <button class="btn btn-warning" style="width: 33%;" type="submit">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

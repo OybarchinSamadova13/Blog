@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Start of Navbar -->
+        <div class="col-12">
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                <a class="navbar-brand text-primary" href="{% url 'home_view' %}">
+                    <i class="fas fa-blog" style="font-size:36px;"></i>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <div class="col-6">
+                        <ul class="navbar-nav">
+
+                            <li class="nav-item">
+                                <a class="nav-link text-primary" href="{% url 'home_view' %}"><b> Home</b></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-primary" href="{% url 'about' %}"><b>About</b> </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                        <ul class="navbar-nav ">
+
+                            {% if user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="nav-link text-primary" href="{% url 'profile' %}"><b> Profile</b></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-primary" href="{% url 'logout' %}"><b> Logout</b></a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link text-primary" href="{% url 'login' %}"><b> Login</b></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-primary" href="{% url 'register' %}"><b> Register</b></a>
+                                </li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+        <!-- End of Navbar -->
+    </div>
+</div>

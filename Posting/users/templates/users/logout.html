@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% block nav %}{% include 'blog/navigation.html' %}{% endblock %}
+
+{% block content %}
+    <div class="col-md-6 offset-3 mt-5">
+        <div class="card text-white mt-5" style="background-color: #343a40; ">
+
+            <div class="card-body">
+                <div class="alert alert-success" role="alert">
+                    You are successfully Logged out
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-center">
+                    <a href="{% url 'login' %}">Login again</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

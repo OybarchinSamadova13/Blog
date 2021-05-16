@@ -1,0 +1,84 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block nav %}{% include 'blog/navigation.html' %}{% endblock %}
+
+{% block content %}
+
+
+
+    <div class="col-8 offset-2">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} text-center" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="row">
+            <div class="col mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="e-profile">
+                            <div class="row">
+                                <div class="col-12 col-sm-auto mb-3">
+                                    <div class="mx-auto mt-2">
+                                        {% if user.profile.profile_img %}
+                                            <img style="width: 140px;" class="img-responsive rounded"
+                                                 src="{{ user.profile.profile_img.url }}" alt="There isnt photo">
+                                        {% else %}
+                                            <img style="width: 140px;" class="img-responsive rounded"
+                                                 src="{% static 'default_profile_image/default.jpg' %}"
+                                                 alt="There isnt photo">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                        <h2 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ user.username }}</h2>
+                                        <p class="mb-4 mt-2">{{ user.email }}</p>
+
+
+                                    </div>
+                                    <div class="text-center text-sm-right">
+
+                                        <div class="text-muted"><small>Joined: {{ user.date_joined }}</small></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if user.post.all %}
+                        <h4 class="text-center">Posts</h4>
+                        <ul class="list-group mt-1 mb-3">
+                            {% for p in user.post.all %}
+                                <a href="{% url 'post_details' p.pk %}" style="text-decoration: none;"
+                                   class="text-dark author-posts">
+                                    <li class="mt-1 list-group-item d-flex justify-content-between align-items-center hover">
+                                        {{ p.title }}
+                                        <span class="badge badge-primary badge-pill">{{ p.comment.count }}</span>
+                                    </li>
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <div class="card-footer">
+                        <h4 class="text-center">User Info</h4>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ u_form|crispy }}
+                            {{ p_form|crispy }}
+                            <div class="form-group d-flex justify-content-center mt-5">
+                                <button class="btn btn-warning" style="width: 33%;" type="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block nav %}{% include 'blog/navigation.html' %}{% endblock %}
+
+{% block content %}
+    <div class="col-12">
+        <div class="bg-light">
+            <div class="container py-5">
+                <div class="row h-100 align-items-center py-5">
+                    <div class="col-lg-6">
+                        <h1 class="display-6 ">Read below</h1>
+                        <p class="lead text-muted mb-0">In this web application you can create posts on a
+                            topic you like and share ideas on this topic with your friends</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white py-5">
+            <div class="container py-5">
+                <div class="row align-items-center mb-5">
+                    <div class="col-lg-6 order-2 order-lg-1"><i class="	fas fa-tasks mb-3 text-primary"
+                                                                style="font-size: 30px"></i>
+                        <h2 class="font-weight-light">Register and Login</h2>
+                        <p class="font-italic text-muted mb-4">To take full advantage of this web application,
+                            you must first register and login through your details</p>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-6"></div>
+                    <div class="col-lg-6"><i class="far fa-edit mb-3 text-primary" style="font-size: 30px"></i>
+                        <h2 class="font-weight-light">Creating and Updating</h2>
+                        <p class="font-italic text-muted mb-4">Another important and great opportunity in this web app
+                            is that you can place posts
+                            on a topic you like and of course change them. It also allows you to delete if you don't
+                            like it.</p>
+                    </div>
+                </div>
+                <div class="row align-items-center mb-5">
+                    <div class="col-lg-6 order-2 order-lg-1"><i class="	far fa-comments mb-3 text-primary"
+                                                                style="font-size: 30px"></i>
+                        <h2 class="font-weight-light">Comments</h2>
+                        <p class="font-italic text-muted mb-4">The app makes it easy for you to comment on any post you
+                            read</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="bg-light py-5">
+            <div class="container py-5">
+                <div class="row mb-4">
+                    <div class="col-lg-12">
+                        <h2 class="display-4 font-weight-light text-center">Our team</h2>
+                    </div>
+                </div>
+
+                <div class="row text-center d-flex justify-content-around">
+                    <div class="col-xl-3 col-sm-6 mb-5">
+                        <div class="bg-white rounded shadow-sm py-5 px-4">
+                            <h5 class="mb-0">Bobur Samadov</h5><span
+                                class="small text-uppercase text-muted">CEO - Founder</span> <br>
+                            <ul class="social mb-0 list-inline mt-3">
+                                <li class="list-inline-item"><a href="#" class="social-link"><i
+                                        class="fa fa-facebook-f"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="social-link"><i
+                                        class="fa fa-twitter"></i></a>
+                                </li>
+                                <li class="list-inline-item"><a href="#" class="social-link"><i
+                                        class="fa fa-instagram"></i></a>
+                                </li>
+                                <li class="list-inline-item"><a href="#" class="social-link"><i
+                                        class="fa fa-linkedin"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="bg-light pb-5">
+            <div class="container text-center">
+                <p class="font-italic text-muted mb-0">Created by Bobur Samadov</p>
+            </div>
+        </footer>
+    </div>
+{% endblock %}

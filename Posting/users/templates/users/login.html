@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="col-md-6 offset-3 mt-5">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} text-center" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+        <div class="card text-white mt-5" style="background-color: #343a40; ">
+            <div class="card-header d-flex justify-content-center">
+                <h4>LogIn</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="form-group d-flex justify-content-center mt-5">
+                        <button class="btn btn-warning text-white" style="width: 33%;" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-center">
+                    Don't have an account?<a href="{% url 'register' %}">Register</a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="#">Forgot your password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

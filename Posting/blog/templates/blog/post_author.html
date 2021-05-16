@@ -1,0 +1,63 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block nav %}{% include 'blog/navigation.html' %}{% endblock %}
+
+{% block content %}
+
+
+    <div class="col-8 offset-2">
+        <div class="row">
+            <div class="col mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="e-profile">
+                            <div class="row">
+                                <div class="col-12 col-sm-auto mb-3">
+                                    <div class="mx-auto mt-2">
+                                        {% if post.author.profile.profile_img.url %}
+                                            <img style="width: 140px;" class="img-responsive rounded"
+                                                 src="{{ post.author.profile.profile_img.url }}" alt="There isnt photo">
+                                        {% else %}
+                                            <img style="width: 140px;" class="img-responsive rounded"
+                                                 src="{% static 'default_profile_image/default.jpg' %}"
+                                                 alt="There isnt photo">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                        <h2 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ post.author.username|lower }}</h2>
+                                        <p class="mb-4 mt-2">{{ post.author.email }}</p>
+
+
+                                    </div>
+                                    <div class="text-center text-sm-right">
+
+                                        <div class="text-muted">
+                                            <small>Joined: {{ post.author.date_joined }}</small></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if post.author.post.all %}
+                        <h4 class="text-center">Posts</h4>
+                        <ul class="list-group mt-1">
+                            {% for p in post.author.post.all %}
+                                <a href="{% url 'post_details' p.pk %}" style="text-decoration: none;"
+                                   class="text-dark author-posts">
+                                    <li class="mt-1 list-group-item d-flex justify-content-between align-items-center hover">
+                                        {{ p.title }}
+                                        <span class="badge badge-primary badge-pill">{{ p.comment.count }}</span>
+                                    </li>
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

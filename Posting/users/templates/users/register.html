@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="col-md-6 offset-3 mt-5">
+        <div class="card text-white mt-5" style="background-color: #343a40; ">
+            <div class="card-header d-flex justify-content-center">
+                <h4>REGISTER</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="form-group d-flex justify-content-center mt-5">
+                        <button class="btn btn-warning text-white" style="width: 33%;" type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-center">
+                    Already have an account?<a href="{% url 'login' %}">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

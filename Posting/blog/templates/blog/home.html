@@ -1,0 +1,101 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block nav %}{% include 'blog/navigation.html' %}{% endblock %}
+
+{% block content %}
+
+    <div class=" col-lg-8 col-xl-8 col-10 ">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} mb-5 text-center" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="mb-5 text-center">
+            <a href="{% url 'post_create' %}" class="btn btn-outline-primary">Create the Post</a>
+        </div>
+
+        <div class="row d-flex justify-content-around">
+
+            {% for post in posts %}
+                <div class="col-lg-5 col-xl-5 col-sm-7 col-md-7">
+                    <div class="post">
+                        <div class="card mb-5">
+                            <div class="card-header d-flex justify-content-center">
+
+                                <h5 class="text-center"><a href="{% url 'post_details' post.id %}" class="text-success"
+                                       style="text-decoration: none;">{{ post.title|title }}</a>
+                                </h5>
+                            </div>
+
+                            <div class="card-body p-1">
+                                <p>
+                                    <img class="img-responsive"
+                                         src="{{ post.img.url }}"
+                                         alt="There isnt photo " style="width: 100%;">
+                                </p>
+
+                            </div>
+
+                            <div class="card-footer">
+                                <p>{{ post.content }}</p>
+
+                                <div class="row">
+                                    <div class="col-6 d-flex">
+
+                                        {% if post.author.profile.profile_img.url %}
+                                            <img class="article-img rounded-circle"
+                                                 src="{{ post.author.profile.profile_img.url }}"
+                                                 style="height: 30px; width: 30px">
+                                        {% else %}
+                                            <img class="article-img rounded-circle"
+                                                 src="{% static 'default_profile_image/default.jpg' %}"
+                                                 style="height: 30px; width: 30px">
+                                        {% endif %}
+                                        <a href="{% url 'post_author' post.id %}" class="ml-2 pt-1 author-name">{{ post.author.username|lower }}</a>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <a href="{% url 'post_details' post.id %}" class='text-dark far fa-comment'
+                                           style='font-size:13px; text-decoration: none;'> {{ post.comment.count }}</a>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 text-left mt-3">
+                                        <i class="posted_date"><b>Posted: </b></i>
+                                    </div>
+                                    <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 text-right mt-3">
+                                        <i class="posted_date"><b>{{ post.date_posted }}</b></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="offset-1 col-lg-3 col-xl-3 d-flex justify-content-center serdiv">
+        <div class="ser ">
+            <form method="get">
+                <div class="form-group">
+                    <label for="email">
+                        <h6 class="text-center"><b>Lets search with post title or username !</b></h6>
+                    </label>
+                    <div class="input-group mb-3">
+                        {% if q is None %}
+                            <input type="text" class="form-control" name="q" placeholder="Title | Username">
+                        {% else %}
+                            <input type="text" class="form-control" name="q" placeholder="Title | Username"
+                                   value={{ q }}>
+                        {% endif %}
+                        <div class="input-group-append">
+                            <button class="btn btn-warning" type="submit">Go</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+{% endblock %}
